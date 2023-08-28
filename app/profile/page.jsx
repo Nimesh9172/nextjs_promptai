@@ -8,41 +8,42 @@ import Profile from "@/components/Profile";
 const ProfilePage = () => {
   const [posts, setPosts] = useState([]);
   const { data: session } = useSession();
-  const router = useRouter()
+  const router = useRouter();
 
   const handleEdit = async (post) => {
-    router.push(`/update-prompt?id=${post._id}`)
+    router.push(`/update-prompt?id=${post._id}`);
   };
 
   const handleDelete = async (post) => {
-    const hasConfirmed = confirm("Are you Sure you want to delete this prompt?")
+    const hasConfirmed = confirm(
+      "Are you Sure you want to delete this prompt?"
+    );
 
     if (hasConfirmed) {
       try {
-        await fetch(`/api/prompt/${post._id.toString()}`,{
-          method:"DELETE"
-        })
-        const filteredPosts = posts.filter(p => p._id !== post._id)
+        await fetch(`/api/prompt/${post._id.toString()}`, {
+          method: "DELETE",
+        });
+        const filteredPosts = posts.filter((p) => p._id !== post._id);
 
-        setPosts(filteredPosts)
+        setPosts(filteredPosts);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
   };
-
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await fetch(`/api/users/${session?.user.id}/posts`);
         if (!response.ok) {
-          throw new Error('Something went wrong')
+          throw new Error("Something went wrong");
         }
         const data = await response.json();
         setPosts(data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
 
