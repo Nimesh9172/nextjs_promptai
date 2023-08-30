@@ -1,0 +1,13 @@
+.prompt_card {
+  min-height: 198px;
+  /* display: grid; */
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+ }
+.prompt_card .prompts {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}

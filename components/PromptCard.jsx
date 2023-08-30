@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import styles from './PromptCard.module.css'
 
 const PromptCard = ({ post, handleTagClick, handleDelete, handleEdit }) => {
   const [copied, setCopied] = useState("");
@@ -17,7 +18,7 @@ const PromptCard = ({ post, handleTagClick, handleDelete, handleEdit }) => {
   };
 
   return (
-    <div className="prompt_card">
+    <div className={`${styles.prompt_card} prompt_card`}>
       <div className="flex justify-between items-start gap-5">
         <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
           <Image
@@ -53,7 +54,7 @@ const PromptCard = ({ post, handleTagClick, handleDelete, handleEdit }) => {
           />
         </div>
       </div>
-      <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
+      <p className={`my-4 font-satoshi text-sm text-gray-700 prompts ${styles.prompts}`}>{post.prompt}</p>
       <p
         className="font-inter text-sm blue_gradient cursor-pointer"
         onClick={() => handleTagClick && handleTagClick(post.tag)}

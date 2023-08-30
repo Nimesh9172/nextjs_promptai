@@ -5,10 +5,13 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Profile from "@/components/Profile";
 
+
 const ProfilePage = () => {
   const [posts, setPosts] = useState([]);
   const { data: session } = useSession();
   const router = useRouter();
+
+
 
   const handleEdit = async (post) => {
     router.push(`/update-prompt?id=${post._id}`);
